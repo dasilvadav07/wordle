@@ -1,0 +1,7 @@
+{
+  "name": "Wordle",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
