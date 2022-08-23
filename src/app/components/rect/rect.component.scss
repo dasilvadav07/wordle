@@ -1,0 +1,35 @@
+.rect
+{
+    width: 64px;
+    height: 64px;
+    background: #282828;
+    border: 3px solid #343434;
+    
+    border-radius: 15px;
+    color: #E8E8E8;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p {
+        font-family: 'ABeeZee', sans-serif;
+        font-size: 36px;
+        font-style: normal;
+        margin: 0
+    }
+
+    &.correct
+    {
+        background: #008545;
+        border: 3px solid #73FF81;
+        color : #B8FFB1
+    }
+
+    &.wrong
+    {
+        background: #855000;
+        border: 3px solid #FFAE73;
+        color : #FFCD82
+    }
+}

@@ -1,0 +1,5 @@
+<div *ngFor = "let row of rows" class = "row">
+  <div *ngFor = "let column of row.columns" class = "column">
+    <app-rect [character]="column.character" [status]="column.status"></app-rect>
+  </div>
+</div>
