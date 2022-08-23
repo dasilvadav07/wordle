@@ -1,0 +1,14 @@
+.title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    padding: 0.5rem;
+    img{
+        max-height: 5vh;
+    }
+    p{
+        margin: 0;
+        font-size: 1.5rem;
+    }
+}
