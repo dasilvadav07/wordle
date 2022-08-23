@@ -17,7 +17,7 @@
   <div class="main">
   <app-matrix></app-matrix>  
     <div class="clavier">
-      <p *ngFor="let item of clavier">{{item}}</p>
+      <p *ngFor="let item of clavier" (click) ="setInputPress(item)">{{item}}</p>
     </div>
   </div>
 </ion-content>

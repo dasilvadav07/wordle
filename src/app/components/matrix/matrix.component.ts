@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GameInstance } from 'src/Gameplay/gameInstance';
 
 @Component({
   selector: 'app-matrix',
@@ -19,11 +20,7 @@ export class MatrixComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.draw("SALUT" , 5);
-    this.rows[0].verify("HAUMT");
-    this.rows[1].verify("SAUFT");
-    this.rows[2].fill("SAL");
-    this.rows[3].verify("SALUT");
+    GameInstance.setMatrix(this);
   }
 
   public draw(goal : string, rows : number)
@@ -64,7 +61,8 @@ export class MatrixRow
     this.goal = wordGoal;
   }
 
-  public verify(word : string){
+  public verify(word : string) : boolean{
+    let corrects : number = 0;
     for(let i = 0; i < word.length; i++)
     {
       let char = word.charAt(i);
@@ -73,6 +71,7 @@ export class MatrixRow
       column.character = char;
       if(char === this.goal.charAt(i)){
         column.status = "correct";
+        corrects += 1;
         continue;
       }
       else if(this.goal.includes(char))
@@ -80,9 +79,15 @@ export class MatrixRow
         column.status = "wrong";
       }
     }
+
+    return (corrects === word.length);
   }
 
   public fill(word : string){
+    for(let i = 0; i < this.columns.length; i++)
+    {
+      this.columns[i].character = '';
+    }
     for(let i = 0; i < word.length; i++)
     {
       let char = word.charAt(i);
