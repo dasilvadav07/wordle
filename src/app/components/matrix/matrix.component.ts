@@ -63,6 +63,7 @@ export class MatrixRow
 
   public verify(word : string) : boolean{
     let corrects : number = 0;
+    let ignoreChar : string[] = [];
     for(let i = 0; i < word.length; i++)
     {
       let char = word.charAt(i);
@@ -76,13 +77,24 @@ export class MatrixRow
       if(char === this.goal.charAt(i)){
         column.status = "correct";
         corrects += 1;
+        this.highlightKeyboard(char, "correct");
         continue;
       }
       else if(countInWord > 0
       && countInWord <= countInGoal)
       {
+        if(ignoreChar.includes(char)){
+          continue;
+        }else{
+          ignoreChar.push(char);
+        }
+
         column.status = "wrong";
+        this.highlightKeyboard(char, "wrong");
+        continue;
       }
+
+      this.highlightKeyboard(char, "error");
     }
 
     return (corrects === word.length);
@@ -119,5 +131,13 @@ export class MatrixRow
     }
 
     return c;
+  }
+
+  private highlightKeyboard(key : string, status : string){
+    let keyElement = document.getElementById(`key_${key.toLowerCase()}`);
+    if(keyElement === null){
+      return;
+    }
+    keyElement.classList.add(status);
   }
 }

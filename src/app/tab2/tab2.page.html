@@ -22,7 +22,7 @@
   <ion-toolbar>
     <ion-title class="count-container">
       <div class="count">
-        <h2>Average tries : </h2>
+        <h2>Average tries : {{tries}}</h2>
       </div>
     </ion-title>
   </ion-toolbar>
@@ -36,7 +36,7 @@
     </div>
     <div class="word-list-container" [ngClass]="{'hide': showOrHide}">
       <div class="word-list-container-content">
-        <p>Hello</p>
+        <p *ngFor = "let word of words">{{word}}</p>
       </div>
     </div>
   </div>
