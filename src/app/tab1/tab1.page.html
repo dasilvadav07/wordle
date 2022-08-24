@@ -15,9 +15,11 @@
     </ion-toolbar>
   </ion-header>
   <div class="main">
-  <app-matrix></app-matrix>  
+    <div class="content">
+      <app-matrix></app-matrix>  
+    </div>
     <div class="clavier">
-      <p *ngFor="let item of clavier" (click) ="setInputPress(item)">{{item}}</p>
+      <p *ngFor="let item of clavier" (click) ="setInputPress(item)" (click)="isClicked($event)">{{item}}</p>
     </div>
   </div>
 </ion-content>

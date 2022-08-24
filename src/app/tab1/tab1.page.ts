@@ -58,6 +58,13 @@ export class Tab1Page {
     }
   }
 
+  isClicked(event: any) {
+    setTimeout(() => {
+      event.target.classList.toggle('btn-clicked')
+    }, 150);
+    event.target.classList.toggle('btn-clicked');
+  }
+
   public removeChar(){
     GameInstance.removeLastCharacterFromKeyboard();
   }
