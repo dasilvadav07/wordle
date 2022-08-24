@@ -12,3 +12,12 @@
         font-size: 1.5rem;
     }
 }
+.title-container{
+    background: #313131;
+    .title{
+        font-family: 'ABeeZee', sans-serif;
+        h2{
+            text-shadow: 1px 1px 5px black, -1px -1px 5px black;
+        }
+    }
+}
