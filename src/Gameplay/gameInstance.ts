@@ -1,4 +1,5 @@
 import { MatrixComponent } from "src/app/components/matrix/matrix.component";
+import { GameStorage } from "./GameStorage";
 
 export class WordsDB{
     private static listMotDeCinqLettre: string[] = ["ABACA",
@@ -8044,12 +8045,14 @@ export class GameInstance
         if(this.matrix.rows[this.rowIndex].verify(this.keyboardEntry))
         {
             console.log("YOU WON !");
+            GameStorage.saveWord(this.keyboardEntry);
             return;
         }
 
         if(this.rowIndex < this.matrix.rows.length - 1){
             this.keyboardEntry = "";
             this.rowIndex += 1;
+            GameStorage.increaseTries();
             this.onUpdateMatrix();
         }else{
             console.log("GAME OVER !");

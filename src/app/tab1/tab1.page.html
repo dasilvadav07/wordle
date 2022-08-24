@@ -19,7 +19,7 @@
       <app-matrix></app-matrix>  
     </div>
     <div class="clavier">
-      <p *ngFor="let item of clavier" (click) ="setInputPress(item)" (click)="isClicked($event)">{{item}}</p>
+      <p *ngFor="let item of clavier" (click) ="setInputPress(item)" (click)="isClicked($event)" id="key_{{item}}">{{item}}</p>
     </div>
   </div>
 </ion-content>
