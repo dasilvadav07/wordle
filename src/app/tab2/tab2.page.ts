@@ -7,6 +7,11 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
+  showOrHide: boolean = true;
   constructor() {}
+
+  showAndHide() {
+    this.showOrHide = !this.showOrHide;
+  }
 
 }
