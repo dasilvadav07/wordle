@@ -67,14 +67,19 @@ export class MatrixRow
     {
       let char = word.charAt(i);
       let column = this.columns[i];
+      
+      let countInGoal = this.count(this.goal, char);
+      let countInWord = this.count(word, char);
 
       column.character = char;
+
       if(char === this.goal.charAt(i)){
         column.status = "correct";
         corrects += 1;
         continue;
       }
-      else if(this.goal.includes(char))
+      else if(countInWord > 0
+      && countInWord <= countInGoal)
       {
         column.status = "wrong";
       }
@@ -86,7 +91,8 @@ export class MatrixRow
   public fill(word : string){
     for(let i = 0; i < this.columns.length; i++)
     {
-      this.columns[i].character = '';
+      this.columns[i].status = null;
+      this.columns[i].character = null;
     }
     for(let i = 0; i < word.length; i++)
     {
@@ -95,5 +101,23 @@ export class MatrixRow
       column.character = char;
       column.status = null;
     }
+  }
+
+  public focus(index : number){
+    if(index < this.columns.length){
+      this.columns[index].status = "focus";
+    }
+  }
+
+  private count(word : string, char : string) : number
+  {
+    let c = 0;
+    for (let i = 0; i < word.length; i++) {
+      if(word.charAt(i) === char){
+        c += 1;
+      }
+    }
+
+    return c;
   }
 }

@@ -8014,6 +8014,7 @@ export class GameInstance
         this.rowIndex = 0;
         this.wordGoal = WordsDB.getRandomWord();
         this.matrix.draw(this.wordGoal, 6);
+        this.onUpdateMatrix();
         console.log(this.wordGoal);
     }
 
@@ -8049,6 +8050,7 @@ export class GameInstance
         if(this.rowIndex < this.matrix.rows.length - 1){
             this.keyboardEntry = "";
             this.rowIndex += 1;
+            this.onUpdateMatrix();
         }else{
             console.log("GAME OVER !");
         }
@@ -8056,6 +8058,8 @@ export class GameInstance
 
     private static onUpdateMatrix()
     {
-        this.matrix.rows[this.rowIndex].fill(this.keyboardEntry);
+        let row = this.matrix.rows[this.rowIndex];
+        row.fill(this.keyboardEntry);
+        row.focus(this.keyboardEntry.length);    
     }
 }
