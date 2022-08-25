@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { GameInstance } from 'src/Gameplay/gameInstance';
-import { Vibration } from '@awesome-cordova-plugins/vibration/ngx';
 
 @Component({
   selector: 'app-tab1',
@@ -41,7 +40,7 @@ export class Tab1Page {
     "enter"
     ];
 
-  constructor(private vibration: Vibration) {
+  constructor() {
 
   }
 
@@ -74,7 +73,6 @@ export class Tab1Page {
 
   public validateEntry(){
     GameInstance.validateKeyboardEntry();
-    this.vibration.vibrate(500);
     this.win= GameInstance.isWin;
   }
 }
