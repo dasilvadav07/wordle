@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { GameInstance } from 'src/Gameplay/gameInstance';
+import { GameInstance, WordsDB } from 'src/Gameplay/gameInstance';
 import { GameStorage } from 'src/Gameplay/GameStorage';
 import { MatrixComponent } from '../matrix/matrix.component';
 
@@ -31,8 +31,19 @@ export class WinModalComponent implements OnInit {
   }
 
   onClick(){
+    if(GameInstance.currentWordDB.length <= 0){
+      return;
+    }
+
     GameInstance.isWin = true;
     window.location.reload();
   }
 
+  public selectEasyMode(){
+    localStorage.setItem("difficulty" , "easy")
+  }
+
+  public selectHardMode(){
+    localStorage.setItem("difficulty" , "hard")
+  }
 }

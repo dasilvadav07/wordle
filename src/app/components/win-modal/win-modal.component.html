@@ -1,5 +1,12 @@
 <div class="modal">
   <p>Congratulations you discover the right word :</p>
+  <p>Choose difficulty : 
+    <br>
+    <ion-radio-group>
+      Easy <ion-radio value="Easy" (click)="selectEasyMode()"></ion-radio>
+      Hard <ion-radio value="Hard" (click)="selectHardMode()"></ion-radio>
+    </ion-radio-group>
+  </p>
   <p>{{words[words.length-1]}}</p>
   <button (click)="onClick()">New game</button>
 </div>
