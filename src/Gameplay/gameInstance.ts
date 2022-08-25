@@ -8067,11 +8067,11 @@ export class GameInstance
 
     public static validateKeyboardEntry()
     {
+        if(this.keyboardEntry.length < this.wordGoal.length){
+            return;
+        }
         if (WordsDB.listMotDeCinqLettre.includes(this.keyboardEntry)) {
             GameStorage.increaseTries();
-            if(this.keyboardEntry.length < this.wordGoal.length){
-                return;
-            }
     
             if(this.matrix.rows[this.rowIndex].verify(this.keyboardEntry))
             {
