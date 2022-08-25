@@ -1,4 +1,5 @@
 import { MatrixComponent } from "src/app/components/matrix/matrix.component";
+import { Tab1Page } from "src/app/tab1/tab1.page";
 import { GameStorage } from "./GameStorage";
 
 export class WordsDB{
@@ -8003,6 +8004,7 @@ export class GameInstance
     public static rowIndex : number = 0;
     public static keyboardEntry : string = "";
     public static matrix : MatrixComponent = null;
+    static isWin: boolean = true;
 
     public static setMatrix(matrix : MatrixComponent)
     {
@@ -8038,6 +8040,7 @@ export class GameInstance
 
     public static validateKeyboardEntry()
     {
+        GameStorage.increaseTries();
         if(this.keyboardEntry.length < this.wordGoal.length){
             return;
         }
@@ -8046,13 +8049,14 @@ export class GameInstance
         {
             console.log("YOU WON !");
             GameStorage.saveWord(this.keyboardEntry);
+            this.isWin = !this.isWin;
             return;
         }
 
         if(this.rowIndex < this.matrix.rows.length - 1){
             this.keyboardEntry = "";
             this.rowIndex += 1;
-            GameStorage.increaseTries();
+            //GameStorage.increaseTries();
             this.onUpdateMatrix();
         }else{
             console.log("GAME OVER !");

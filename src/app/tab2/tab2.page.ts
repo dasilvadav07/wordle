@@ -9,11 +9,11 @@ import { GameStorage } from 'src/Gameplay/GameStorage';
 export class Tab2Page {
 
   words: string [] = [];
-  tries: number = 0;
+  tries: string;
   showOrHide: boolean = true;
   constructor() {
     this.words = this.getAllWords();
-    this.tries = this.getTries();
+    this.tries = (this.getTries()/this.words.length).toFixed(2);
   }
 
   showAndHide() {

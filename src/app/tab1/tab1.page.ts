@@ -8,6 +8,7 @@ import { GameInstance } from 'src/Gameplay/gameInstance';
 })
 export class Tab1Page {
  
+  win: boolean = true;
   clavier: string[] = [
     "a",
     "z", 
@@ -40,6 +41,7 @@ export class Tab1Page {
     ];
 
   constructor() {
+
   }
 
   public setInputPress(inputChar : string){
@@ -71,5 +73,6 @@ export class Tab1Page {
 
   public validateEntry(){
     GameInstance.validateKeyboardEntry();
+    this.win= GameInstance.isWin;
   }
 }

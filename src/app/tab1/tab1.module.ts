@@ -8,6 +8,7 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 import { RectModule } from '../components/rect/rect.module';
 import { MatrixModule } from '../components/matrix/matrix.module';
+import { WinModalComponent } from '../components/win-modal/win-modal.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,6 @@ import { MatrixModule } from '../components/matrix/matrix.module';
     Tab1PageRoutingModule,
     MatrixModule
   ],
-  declarations: [Tab1Page]
+  declarations: [Tab1Page, WinModalComponent]
 })
 export class Tab1PageModule {}
