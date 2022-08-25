@@ -1,5 +1,4 @@
 import { MatrixComponent } from "src/app/components/matrix/matrix.component";
-import { Tab1Page } from "src/app/tab1/tab1.page";
 import { GameStorage } from "./GameStorage";
 
 export class WordsDB{
