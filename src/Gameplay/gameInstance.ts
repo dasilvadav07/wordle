@@ -3,7 +3,7 @@ import { Tab1Page } from "src/app/tab1/tab1.page";
 import { GameStorage } from "./GameStorage";
 
 export class WordsDB{
-    private static listMotDeCinqLettre: string[] = ["ABACA",
+    public static listMotDeCinqLettre: string[] = ["ABACA",
     "ABALE",
     "ABATS",
     "ABBES",
@@ -6681,7 +6681,6 @@ export class WordsDB{
     "SHORT",
     "SHOTS",
     "SHOWS",
-
     "SHOYU",
     "SHUNT",
     "SIALS",
@@ -7991,10 +7990,38 @@ export class WordsDB{
     "ZOUKS",
     "ZOZOS",
     "ZUMBA"];
+    public static listMotCinqLettreJouable: string[] = 
+    ["ACCES",
+     "BAGUE", 
+     "COTON", 
+     "DIAPO", 
+     "ENFER", 
+     "FENDU", 
+     "GODET", 
+     "HERBE", 
+     "IGLOO", 
+     "JURER",
+     "KAYAK",
+     "LOURD",
+     "MAFIA",
+     "NIECE",
+     "OUTIL",
+     "PIEGE",
+     "QUASI",
+     "ROBOT",
+     "SAVON",
+     "TARTE",
+     "USURE",
+     "VOUTE",
+     "WATTS",
+     "XENON",
+     "YACHT",
+     "ZUMBA"
+     ];
 
     public static getRandomWord() : string
     {
-        return this.listMotDeCinqLettre[Math.floor(Math.random()*this.listMotDeCinqLettre.length)];
+        return this.listMotCinqLettreJouable[Math.floor(Math.random()*this.listMotCinqLettreJouable.length)];
     }
 }
 
@@ -8040,27 +8067,33 @@ export class GameInstance
 
     public static validateKeyboardEntry()
     {
-        GameStorage.increaseTries();
-        if(this.keyboardEntry.length < this.wordGoal.length){
-            return;
+        if (WordsDB.listMotDeCinqLettre.includes(this.keyboardEntry)) {
+            GameStorage.increaseTries();
+            if(this.keyboardEntry.length < this.wordGoal.length){
+                return;
+            }
+    
+            if(this.matrix.rows[this.rowIndex].verify(this.keyboardEntry))
+            {
+                console.log("YOU WON !");
+                GameStorage.saveWord(this.keyboardEntry);
+                this.isWin = !this.isWin;
+                return;
+            }
+    
+            if(this.rowIndex < this.matrix.rows.length - 1){
+                this.keyboardEntry = "";
+                this.rowIndex += 1;
+                //GameStorage.increaseTries();
+                this.onUpdateMatrix();
+            }else{
+                console.log("GAME OVER !");
+            }
         }
-
-        if(this.matrix.rows[this.rowIndex].verify(this.keyboardEntry))
-        {
-            console.log("YOU WON !");
-            GameStorage.saveWord(this.keyboardEntry);
-            this.isWin = !this.isWin;
-            return;
+        else{
+            alert("le mot que vous essayer de jouer n'est pas compris dans la langue française");
         }
-
-        if(this.rowIndex < this.matrix.rows.length - 1){
-            this.keyboardEntry = "";
-            this.rowIndex += 1;
-            //GameStorage.increaseTries();
-            this.onUpdateMatrix();
-        }else{
-            console.log("GAME OVER !");
-        }
+        
     }
 
     private static onUpdateMatrix()
