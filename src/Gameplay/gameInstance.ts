@@ -8751,6 +8751,7 @@ export class GameInstance
     public static matrix : MatrixComponent = null;
     public static currentWordDB : string[] = [];
     static isWin: boolean = true;
+    static isLose: boolean = true;
 
     public static setMatrix(matrix : MatrixComponent)
     {
@@ -8811,6 +8812,7 @@ export class GameInstance
                 this.onUpdateMatrix();
             }else{
                 console.log("GAME OVER !");
+                this.isLose = !this.isLose;
             }
         }
         else{

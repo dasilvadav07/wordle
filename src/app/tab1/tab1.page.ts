@@ -11,6 +11,7 @@ import { ScreenOrientation } from '@awesome-cordova-plugins/screen-orientation/n
 export class Tab1Page {
  
   win: boolean = true;
+  lose: boolean = true;
   clavier: string[] = [
     "a",
     "z", 
@@ -77,5 +78,6 @@ export class Tab1Page {
   public validateEntry(){
     GameInstance.validateKeyboardEntry();
     this.win= GameInstance.isWin;
+    this.lose = GameInstance.isLose;
   }
 }
