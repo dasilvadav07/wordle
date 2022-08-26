@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { GameInstance } from 'src/Gameplay/gameInstance';
+import { Vibration } from '@awesome-cordova-plugins/vibration/ngx';
+import { ScreenOrientation } from '@awesome-cordova-plugins/screen-orientation/ngx';
 
 @Component({
   selector: 'app-tab1',
@@ -40,8 +42,8 @@ export class Tab1Page {
     "enter"
     ];
 
-  constructor() {
-
+  constructor(private vibration : Vibration, private screenOrientation: ScreenOrientation) {
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
   }
 
   public setInputPress(inputChar : string){
@@ -53,6 +55,7 @@ export class Tab1Page {
     else if(char === "enter")
     {
       this.validateEntry();
+      this.vibration.vibrate(500);
     }
     else
     {

@@ -9,6 +9,8 @@ import { Tab1PageRoutingModule } from './tab1-routing.module';
 import { RectModule } from '../components/rect/rect.module';
 import { MatrixModule } from '../components/matrix/matrix.module';
 import { WinModalComponent } from '../components/win-modal/win-modal.component';
+import { Vibration } from '@awesome-cordova-plugins/vibration/ngx';
+import { ScreenOrientation } from '@awesome-cordova-plugins/screen-orientation/ngx';
 
 @NgModule({
   imports: [
@@ -19,6 +21,7 @@ import { WinModalComponent } from '../components/win-modal/win-modal.component';
     Tab1PageRoutingModule,
     MatrixModule
   ],
-  declarations: [Tab1Page, WinModalComponent]
+  declarations: [Tab1Page, WinModalComponent],
+  providers: [Vibration, ScreenOrientation]
 })
 export class Tab1PageModule {}
