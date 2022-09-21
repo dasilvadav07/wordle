@@ -49,7 +49,7 @@ export class MatrixRow
 {
   public columns : RectData[];
 
-  private goal : string;
+  public goal : string;
 
   public constructor(wordGoal : string)
   {
@@ -67,29 +67,30 @@ export class MatrixRow
     for(let i = 0; i < word.length; i++)
     {
       let char = word.charAt(i);
-      let column = this.columns[i];
+      //let column = this.columns[i];
       
       let countInGoal = this.count(this.goal, char);
       let countInWord = this.count(word, char);
 
-      column.character = char;
+      this.columns[i].character = char;
 
       if(char === this.goal.charAt(i)){
-        column.status = "correct";
+        this.columns[i].status = "correct";
         corrects += 1;
         this.highlightKeyboard(char, "correct");
         continue;
       }
-      else if(countInWord > 0
-      && countInWord <= countInGoal)
-      {
-        if(ignoreChar.includes(char)){
+      if((countInWord > 0 && countInWord <= countInGoal) && char !== this.goal.charAt(i))
+      {        
+
+        if(ignoreChar.includes(char) || ignoreChar == null){
           continue;
         }else{
           ignoreChar.push(char);
         }
-
-        column.status = "wrong";
+        console.log(this.columns);
+        
+        this.columns[i].status = "wrong";
         this.highlightKeyboard(char, "wrong");
         continue;
       }
